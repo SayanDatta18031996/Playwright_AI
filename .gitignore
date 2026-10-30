@@ -1,0 +1,20 @@
+
+# Playwright
+node_modules/
+/test-results/
+/playwright-report/
+/blob-report/
+/playwright/.cache/
+/playwright/.auth/
+
+# Environment Variables
+.env
+.env.*
+!.env.example
+
+# Test Reports & Artifacts
+reports/
+custom-report/report*
+custom-report/output/
+allure-results/
+allure-report/
