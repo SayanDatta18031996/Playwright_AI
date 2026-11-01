@@ -4,7 +4,7 @@
  * Description: Covers the complete customer shopping journey including registration,
  * re-authentication, product search, cart addition, and cart checkout validation.
  *
- * Tags: @master @sanity @regression @end-to-end @web
+ * Tags: @master @sanity @regression @e2e @web
  *
  * Steps:
  * 1) Open the application and navigate to Register page
@@ -28,7 +28,7 @@ import { test, expect } from '../../fixtures/pageFixtures';
 import { RandomDataUtil } from '../../utils/dataGenerator';
 import { Helper } from '../../utils/helper';
 
-test('End-to-End Shopping Flow test @master @sanity @regression @end-to-end @web', async ({
+test('End-to-End Shopping Flow test @master @sanity @regression @end-to-end @e2e @web', async ({
     homePage,
     registerPage,
     accountSuccessPage,
