@@ -1,3 +1,22 @@
+/**
+ * @file dataGenerator.ts
+ * @description Random test data generator utility using the Faker.js library.
+ *
+ * Provides static methods to generate realistic random data for use in tests:
+ *  - Person data  : names, emails, phone numbers, usernames, passwords
+ *  - Location data: country, state, city, street, zip code, coordinates
+ *  - Date & Time  : current, recent, future, past dates
+ *  - Commerce data: product names, descriptions, prices, categories
+ *  - API payloads : pre-built payload generators for FakeStore API
+ *
+ * All methods are static — no instantiation needed.
+ *
+ * @example
+ *   import { RandomDataUtil } from '../utils/dataGenerator';
+ *   const email = RandomDataUtil.getEmail();
+ *   const payload = RandomDataUtil.generateProductPayload();
+ */
+
 import { faker } from '@faker-js/faker';
 
 export class RandomDataUtil {

@@ -1,3 +1,18 @@
+/**
+ * @file DataReader.ts
+ * @description Static utility class for reading test data from external files.
+ *
+ * Supports three file formats:
+ *  - JSON  : Parsed directly with JSON.parse
+ *  - CSV   : Parsed using the csv-parse library (returns array of row objects)
+ *  - Excel : Parsed using the xlsx library (returns array of row arrays from Sheet 1)
+ *
+ * Usage:
+ *   import { DataProvider } from '../utils/DataReader';
+ *   const data = DataProvider.readJson('tests/data/users.json');
+ *   const rows = DataProvider.readCsv('tests/data/logins.csv');
+ */
+
 import fs from 'fs';
 import { parse } from 'csv-parse/sync';
 import * as XLSX from 'xlsx';

@@ -12,6 +12,9 @@ node_modules/
 .env.*
 !.env.example
 
+# Logs (auto-generated, retained locally for 30 days)
+logs/*.log
+
 # Test Reports & Artifacts
 reports/
 custom-report/report*

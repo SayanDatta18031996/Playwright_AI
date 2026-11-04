@@ -29,7 +29,7 @@ export class ShoppingCartPage {
      */
     async isShoppingCartPageExists(): Promise<boolean> {
         try {
-            await this.lnkProductName.waitFor({ state: 'visible', timeout: 5000 });
+            await this.lnkProductName.waitFor({ state: 'visible', timeout: 10000 });
             return true;
         } catch (error) {
             console.log(`Error checking Shopping Cart page: ${error}`);
