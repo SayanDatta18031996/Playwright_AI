@@ -40,7 +40,7 @@ on:
 jobs:
   test:
     timeout-minutes: 60
-    runs-on: macos-latest
+    runs-on: ubuntu-latest
 
     steps:
       - name: 📥 Checkout Repository
@@ -58,7 +58,17 @@ jobs:
         run: npx playwright install --with-deps
 
       - name: ⚙️ Create .env File
-        run: cp .env.example .env
+        run: |
+          cp .env.example .env
+          cat >> .env << 'ENVEOF'
+          APP_EMAIL=${{ secrets.APP_EMAIL }}
+          APP_PASSWORD=${{ secrets.APP_PASSWORD }}
+          USERNAME=${{ secrets.API_USERNAME }}
+          PASSWORD=${{ secrets.API_PASSWORD }}
+          DB_PASSWORD=${{ secrets.DB_PASSWORD }}
+          ADMIN_USERNAME=${{ secrets.ADMIN_USERNAME }}
+          ADMIN_PASSWORD=${{ secrets.ADMIN_PASSWORD }}
+          ENVEOF
 
       - name: 🧪 Run Playwright Tests
         env:
