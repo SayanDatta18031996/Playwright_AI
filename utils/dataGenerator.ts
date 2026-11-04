@@ -23,15 +23,15 @@ export class RandomDataUtil {
   // --- Person ---
 
   static getFirstName(): string {
-    return faker.person.firstName();
+    return faker.person.firstName().replace(/[^a-zA-Z]/g, '') || 'John';
   }
 
   static getLastName(): string {
-    return faker.person.lastName();
+    return faker.person.lastName().replace(/[^a-zA-Z]/g, '') || 'Doe';
   }
 
   static getFullName(): string {
-    return faker.person.fullName();
+    return `${this.getFirstName()} ${this.getLastName()}`;
   }
 
   static getEmail(): string {
@@ -39,7 +39,7 @@ export class RandomDataUtil {
   }
 
   static getPhoneNumber(): string {
-    return faker.phone.number();
+    return faker.string.numeric(10);
   }
 
   static getUsername(): string {

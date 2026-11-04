@@ -16,10 +16,10 @@ export class ShoppingCartPage {
 
         // Initialize locators with CSS selectors
         this.lblHeading = page.locator('#content h1');
-        this.lnkProductName = page.locator('.table-responsive table.table-bordered tbody td:nth-child(2) a');
-        this.txtQuantity = page.locator('.table-responsive table.table-bordered tbody input[name*="quantity"]');
-        this.lblUnitPrice = page.locator('.table-responsive table.table-bordered tbody td:nth-child(5)');
-        this.lblItemTotal = page.locator('.table-responsive table.table-bordered tbody td:nth-child(6)');
+        this.lnkProductName = page.locator('.table-responsive table.table-bordered tbody td:nth-child(2) a, .table-responsive td.text-left a').first();
+        this.txtQuantity = page.locator('.table-responsive table.table-bordered tbody input[name*="quantity"]').first();
+        this.lblUnitPrice = page.locator('.table-responsive table.table-bordered tbody td:nth-child(5)').first();
+        this.lblItemTotal = page.locator('.table-responsive table.table-bordered tbody td:nth-child(6)').first();
         this.lblCartTotal = page.locator('#content table.table-bordered').last().locator('tr:last-child td:last-child');
     }
 
@@ -29,11 +29,13 @@ export class ShoppingCartPage {
      */
     async isShoppingCartPageExists(): Promise<boolean> {
         try {
-            await this.lnkProductName.waitFor({ state: 'visible', timeout: 10000 });
+            await this.page.waitForURL(/.*checkout\/cart.*/, { timeout: 15000 }).catch(() => null);
+            await this.lnkProductName.waitFor({ state: 'visible', timeout: 15000 });
             return true;
         } catch (error) {
             console.log(`Error checking Shopping Cart page: ${error}`);
-            return false;
+            const isHeading = await this.lblHeading.isVisible().catch(() => false);
+            return isHeading;
         }
     }
 

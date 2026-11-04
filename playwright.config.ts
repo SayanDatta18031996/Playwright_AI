@@ -46,7 +46,7 @@ export default defineConfig({
     trace: "on-first-retry",         // Capture trace only on the first retry
     screenshot: "only-on-failure",   // Capture screenshot when a test fails
     video: "retain-on-failure",      // Retain video recording only for failed tests
-    headless: false,                 // Run in headed mode locally (set true for CI via env)
+    headless: process.env.CI ? true : false, // Headless in CI, headed locally
     viewport: { width: 1280, height: 720 }, // Standard desktop viewport
     ignoreHTTPSErrors: true,         // Ignore SSL certificate errors
     permissions: ["geolocation"],    // Grant geolocation permission for location-based tests
