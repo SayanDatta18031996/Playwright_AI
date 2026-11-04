@@ -89,7 +89,25 @@ jobs:
           if [ "$mode" = "headed" ]; then
             modeFlag="--headed"
           fi
-          npx playwright test --grep "@$tag" $browserFlag $modeFlag --reporter=dot --output=test-results
+          npx playwright test --grep "@$tag" $browserFlag $modeFlag --output=test-results
+
+      - name: 📁 Upload Execution Logs
+        if: always()
+        uses: actions/upload-artifact@v4
+        with:
+          name: execution-logs
+          path: logs/
+          retention-days: 30
+
+      - name: 📜 Output Logs to Action Summary
+        if: always()
+        run: |
+          if [ -d logs ] && ls logs/*.log 1> /dev/null 2>&1; then
+            echo "### 📋 Test Execution Logs" >> $GITHUB_STEP_SUMMARY
+            echo '```text' >> $GITHUB_STEP_SUMMARY
+            cat logs/*.log >> $GITHUB_STEP_SUMMARY
+            echo '```' >> $GITHUB_STEP_SUMMARY
+          fi
 
       - name: 📊 Upload Playwright HTML Report
         if: always()
